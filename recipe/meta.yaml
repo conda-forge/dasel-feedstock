@@ -14,7 +14,7 @@ build:
   script:
     - cd src/dasel
     # When not cross-compiling, 'go build -o "${PREFIX}/bin"' is equivalent to 'go install'.
-    - go build -o "${PREFIX}/bin" -v -ldflags "-X github.com/tomwright/dasel/internal.Version=v{{ version }}" ./cmd/dasel
+    - go build -o "${PREFIX}/bin/" -v -ldflags "-X github.com/tomwright/dasel/internal.Version=v{{ version }}" ./cmd/dasel
     - go test -v
     - go-licenses save . --save_path=license-files
 
