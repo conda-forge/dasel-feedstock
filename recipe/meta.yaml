@@ -13,7 +13,8 @@ build:
   number: 0
   script:
     - cd src/dasel
-    - go install -v -ldflags "-X github.com/tomwright/dasel/internal.Version=v{{ version }}" ./cmd/dasel
+    # When not cross-compiling, 'go build -o "${GOBIN}"' is equivalent to 'go install'.
+    - go build -o "${GOBIN}" -v -ldflags "-X github.com/tomwright/dasel/internal.Version=v{{ version }}" ./cmd/dasel
     - go test -v
     - go-licenses save . --save_path=license-files
 
