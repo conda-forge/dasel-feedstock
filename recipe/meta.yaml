@@ -13,7 +13,7 @@ build:
   number: 0
   script:
     - cd src/dasel
-    - go install -v -ldflags "-X github.com/tomwright/dasel/internal.Version=v{{ version }}" ./cmd/dasel
+    - go install -v -ldflags "-X github.com/tomwright/dasel/internal.Version=v{{ version }}" -o "${GOBIN}" ./cmd/dasel
     - go test -v
     - go-licenses save . --save_path=license-files
 
