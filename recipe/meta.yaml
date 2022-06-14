@@ -13,8 +13,11 @@ build:
   number: 0
   script:
     - cd src/dasel
-    - go install -v -ldflags "-X github.com/tomwright/dasel/internal.Version=v{{ version }}" ./cmd/dasel
-    - go test -v
+    # When not cross-compiling, 'go build -o "${PREFIX}/bin/"' is equivalent to 'go install'.
+    - go install                   -v -ldflags "-X github.com/tomwright/dasel/internal.Version=v{{ version }}" ./cmd/dasel  # [not arm64]
+    - go build -o "${PREFIX}/bin/" -v -ldflags "-X github.com/tomwright/dasel/internal.Version=v{{ version }}" ./cmd/dasel  # [arm64]
+    # Because osx-arm is cross-compiled, the following results in "bad CPU type in executable" if not disabled.
+    - go test -v  # [not arm64]
     - go-licenses save . --save_path=license-files
 
 requirements:
