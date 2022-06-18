@@ -15,10 +15,11 @@ build:
     - cd src/dasel
     - printenv  # [not win]
     - SET  # [win]
-    - go build -o "${PREFIX}/bin/" -v -ldflags "-X github.com/tomwright/dasel/internal.Version=v{{ version }}" ./cmd/dasel  # [not win]
-    - go build -o  "%PREFIX%\bin\" -v -ldflags "-X github.com/tomwright/dasel/internal.Version=v{{ version }}" ./cmd/dasel  # [win]
-    - go install                   -v -ldflags "-X github.com/tomwright/dasel/internal.Version=v{{ version }}" ./cmd/dasel  # [win]
+    - go build -o "$BUILD_PREFIX/bin/" -v -ldflags "-X github.com/tomwright/dasel/internal.Version=v{{ version }}" ./cmd/dasel  # [not win]
+    - go build -o  %BUILD_PREFIX%\bin\ -v -ldflags "-X github.com/tomwright/dasel/internal.Version=v{{ version }}" ./cmd/dasel  # [win]
+    - echo asdf  # [win]
     - where dasel.exe  # [win]
+    - echo zxcv  # [win]
     # Because osx-arm is cross-compiled, the following results in "bad CPU type in executable" if not disabled.
     - go test -v  # [not arm64]
     - go-licenses save . --save_path=license-files
