@@ -10,3 +10,5 @@ provider:
 test: native_and_emulated
 bot:
   automerge: true
+conda_build:
+  pkg_format: '2'
