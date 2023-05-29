@@ -10,12 +10,11 @@ source:
   sha256: 7d64e3e6e37b358948ccd3479b54610b87fbcc562049ca96c0bcb4fcefeea350
 
 build:
-  number: 0
+  number: 1
   script:
     - cd src/dasel
-    # When not cross-compiling, 'go build -o "${PREFIX}/bin/"' is equivalent to 'go install'.
-    - go install                   -v -ldflags "-X github.com/tomwright/dasel/internal.Version=v{{ version }}" ./cmd/dasel  # [not arm64]
-    - go build -o "${PREFIX}/bin/" -v -ldflags "-X github.com/tomwright/dasel/internal.Version=v{{ version }}" ./cmd/dasel  # [arm64]
+    - go build -o "${PREFIX}/bin/dasel"    -v -ldflags "-X github.com/tomwright/dasel/v2/internal.Version=v{{ version }}" ./cmd/dasel  # [not win]
+    - go build -o "%PREFIX%\bin\dasel.exe" -v -ldflags "-X github.com/tomwright/dasel/v2/internal.Version=v{{ version }}" ./cmd/dasel  # [win]
     # Because osx-arm is cross-compiled, the following results in "bad CPU type in executable" if not disabled.
     - go test -v  # [not arm64]
     - go-licenses save . --save_path=license-files
@@ -27,8 +26,10 @@ requirements:
 
 test:
   commands:
-    - dasel --help
     - dasel --version
+    - dasel --help
+    # Skip the version check on Windows since grep doesn't work.
+    - dasel --version | grep v{{ version }}  # [not win]
 
 about:
   home: https://github.com/TomWright/dasel
