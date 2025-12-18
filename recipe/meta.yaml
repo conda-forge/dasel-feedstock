@@ -1,4 +1,4 @@
-{% set version = "2.8.1" %}
+{% set version = "3.1.2" %}
 
 package:
   name: dasel
@@ -7,7 +7,7 @@ package:
 source:
   folder: src/dasel
   url: https://github.com/TomWright/dasel/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: ba8da9569f38e7f33453c03ac988382291a01004a96c307d52cccadb9ef7837e
+  sha256: 77384da1cc01d66ca48e67febc4953ccf7d10ed9a11d69eae937ebe2533338b2
 
 build:
   number: 0
