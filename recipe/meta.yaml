@@ -26,10 +26,10 @@ requirements:
 
 test:
   commands:
-    - dasel --version
+    - dasel version
     - dasel --help
     # Skip the version check on Windows since grep doesn't work.
-    - dasel --version | grep v{{ version }}  # [not win]
+    - dasel version | grep v{{ version }}  # [not win]
 
 about:
   home: https://github.com/TomWright/dasel
