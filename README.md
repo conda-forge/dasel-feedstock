@@ -10,12 +10,10 @@ Package license: MIT
 Summary: Dasel (short for data-selector) allows you to query and modify data structures
 using selector strings.
 
-
 Development: https://github.com/TomWright/dasel
 
 Select, put and delete data from JSON, TOML, YAML, XML and CSV files with a single
 tool. Supports conversion between formats and can be used as a Go package.
-
 
 Current build status
 ====================
