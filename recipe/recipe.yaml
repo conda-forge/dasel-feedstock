@@ -8,9 +8,14 @@ package:
   version: ${{ version }}
 
 source:
-  url: https://github.com/TomWright/dasel/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: 7fb73efd7378a784ce5cda960930ef8da01a9966e42ecc8904713a18b65e8f1a
-  target_directory: src/dasel
+  - url: https://github.com/TomWright/dasel/archive/refs/tags/v${{ version }}.tar.gz
+    sha256: 7fb73efd7378a784ce5cda960930ef8da01a9966e42ecc8904713a18b65e8f1a
+    target_directory: src/dasel
+  # Windows-only dep `go-localereader` (MIT-licensed) misses standard license file layout,
+  # so we have to manually add the license file
+  - url: https://raw.githubusercontent.com/mattn/go-localereader/master/LICENSE
+    sha256: dceede03550621e65ec7b79fcba87cf6dbb9d31132a8ae71a8fe8ceec0af7da3
+    target_directory: library_licenses_2/github.com/go-localereader
 
 build:
   number: 1
@@ -20,7 +25,7 @@ build:
       then: go build -o "${PREFIX}/bin/dasel"     -v -ldflags "-X github.com/tomwright/dasel/v3/internal.Version=v${{ version }}" ./cmd/dasel
     - if: win
       then: go build -o "%LIBRARY_BIN%\dasel.exe" -v -ldflags "-X github.com/tomwright/dasel/v3/internal.Version=v${{ version }}" ./cmd/dasel
-    - go-licenses save ./cmd/dasel --save_path=license-files
+    - go-licenses save ./cmd/dasel --save_path=library_licenses --ignore github.com/mattn/go-localereader
 
 requirements:
   build:
@@ -42,7 +47,7 @@ about:
   license: MIT
   license_file:
     - src/dasel/LICENSE
-    - src/dasel/license-files/
+    - src/dasel/library_licenses/
   summary: |
     Dasel (short for data-selector) allows you to query and modify data structures
     using selector strings.
