@@ -22,9 +22,9 @@ build:
   script:
     - cd src/dasel
     - if: unix
-      then: go build -o "${PREFIX}/bin/dasel"     -v -ldflags "-X github.com/tomwright/dasel/v3/internal.Version=v${{ version }}" ./cmd/dasel
+      then: go build -o "${PREFIX}/bin/dasel"     -v -trimpath -ldflags "-s -w -X github.com/tomwright/dasel/v3/internal.Version=v${{ version }}" ./cmd/dasel
     - if: win
-      then: go build -o "%LIBRARY_BIN%\dasel.exe" -v -ldflags "-X github.com/tomwright/dasel/v3/internal.Version=v${{ version }}" ./cmd/dasel
+      then: go build -o "%LIBRARY_BIN%\dasel.exe" -v -trimpath -ldflags "-s -w -X github.com/tomwright/dasel/v3/internal.Version=v${{ version }}" ./cmd/dasel
     - go-licenses save ./cmd/dasel --save_path=library_licenses --ignore github.com/mattn/go-localereader
 
 requirements:
