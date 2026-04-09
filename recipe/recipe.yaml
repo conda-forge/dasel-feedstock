@@ -1,0 +1,58 @@
+schema_version: 1
+
+context:
+  version: "3.4.1"
+
+package:
+  name: dasel
+  version: ${{ version }}
+
+source:
+  url: https://github.com/TomWright/dasel/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 7fb73efd7378a784ce5cda960930ef8da01a9966e42ecc8904713a18b65e8f1a
+  target_directory: src/dasel
+
+build:
+  number: 1
+  script:
+    - cd src/dasel
+    - if: unix
+      then: go build -o "${PREFIX}/bin/dasel"     -v -ldflags "-X github.com/tomwright/dasel/v3/internal.Version=v${{ version }}" ./cmd/dasel
+    - if: win
+      then: go build -o "%LIBRARY_BIN%\dasel.exe" -v -ldflags "-X github.com/tomwright/dasel/v3/internal.Version=v${{ version }}" ./cmd/dasel
+    - go-licenses save ./cmd/dasel --save_path=license-files
+
+requirements:
+  build:
+    - ${{ compiler("go-nocgo") }}
+    - go-licenses
+
+tests:
+  - script:
+      - dasel --help
+      - dasel version
+      - if: not win
+        then: dasel version | grep v${{ version }}
+  - package_contents:
+      bin:
+        - dasel
+      strict: true
+
+about:
+  license: MIT
+  license_file:
+    - src/dasel/LICENSE
+    - src/dasel/license-files/
+  summary: |
+    Dasel (short for data-selector) allows you to query and modify data structures
+    using selector strings.
+  description: |
+    Select, put and delete data from JSON, TOML, YAML, XML and CSV files with a single
+    tool. Supports conversion between formats and can be used as a Go package.
+  homepage: https://github.com/TomWright/dasel
+  repository: https://github.com/TomWright/dasel
+
+extra:
+  recipe-maintainers:
+    - tomwright
+    - maresb
