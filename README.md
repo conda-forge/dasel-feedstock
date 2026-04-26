@@ -3,7 +3,7 @@ About dasel-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/dasel-feedstock/blob/main/LICENSE.txt)
 
-Home: https://github.com/TomWright/dasel
+Home: https://daseldocs.tomwright.me/
 
 Package license: MIT
 
