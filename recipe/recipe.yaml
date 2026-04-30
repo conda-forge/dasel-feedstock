@@ -1,7 +1,7 @@
 schema_version: 1
 
 context:
-  version: "3.8.0"
+  version: "3.8.1"
 
 package:
   name: dasel
@@ -9,7 +9,7 @@ package:
 
 source:
   - url: https://github.com/TomWright/dasel/archive/refs/tags/v${{ version }}.tar.gz
-    sha256: 4d09e057c379d9d629e076752bf9ab9f7fab7a48712da4b73a655ea5157246b2
+    sha256: 92711ddecfad9a1e97a41011d12ea88e9bb3c37827e5d5a718c3a8e8eaa88eaa
     target_directory: src/dasel
   # Windows-only dep `go-localereader` (MIT-licensed) misses standard license file layout,
   # so we have to manually add the license file
@@ -18,7 +18,7 @@ source:
     target_directory: library_licenses_2/github.com/go-localereader
 
 build:
-  number: 1
+  number: 0
   script:
     - cd src/dasel
     - if: unix

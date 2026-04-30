@@ -204,5 +204,6 @@ Feedstock Maintainers
 =====================
 
 * [@maresb](https://github.com/maresb/)
+* [@salim-b](https://github.com/salim-b/)
 * [@tomwright](https://github.com/tomwright/)
 
