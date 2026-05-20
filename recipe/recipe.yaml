@@ -54,7 +54,7 @@ tests:
       - dasel --help
       - dasel version
       - if: not win
-        then: dasel version | grep v${{ version }}
+        then: dasel version | grep ${{ version }}
   - package_contents:
       bin:
         - dasel
