@@ -1,7 +1,7 @@
 schema_version: 1
 
 context:
-  version: "3.11.0"
+  version: "3.11.1"
 
 package:
   name: dasel
@@ -9,7 +9,7 @@ package:
 
 source:
   - url: https://github.com/TomWright/dasel/archive/refs/tags/v${{ version }}.tar.gz
-    sha256: a7ca204fec11a80eeca4d02f78c90d11b9ecc4f7e40e290ce112436979c66f71
+    sha256: 55e7cbc95bfea8197dc79a2f8683aaae6502a2d9f47bb5740af088d34bc3a90c
     target_directory: src/dasel
   # Windows-only dep `go-localereader` (MIT-licensed) misses standard license file layout,
   # so we have to manually add the license file
